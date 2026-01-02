@@ -1,0 +1,3 @@
+TradeSkillMaster: enabled
+TradeSkillMaster_AppHelper: enabled
+Blizzard_CompactRaidFrames: enabled

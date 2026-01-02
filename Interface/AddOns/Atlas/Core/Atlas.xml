@@ -1,0 +1,441 @@
+<!--
+
+	Atlas, a World of Warcraft instance map browser
+	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
+	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
+	Copyright 2011 ~ 2023 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+
+	This file is part of Atlas.
+
+	Atlas is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+
+	Atlas is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with Atlas; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+	<Frame name="AtlasFrame" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true" inherits="PortraitFrameTemplate">
+		<Size>
+			<AbsDimension x="1023" y="631"/>
+		</Size>
+		<Anchors>
+ 			<Anchor point="TOPLEFT">
+ 				<Offset>
+ 					<AbsDimension x="0" y="-104"/>
+ 				</Offset>
+ 			</Anchor>
+ 		</Anchors>
+		<Frames>
+			<Button name="$parentLockButton" inherits="AtlasFrameLockButtonTemplate">
+				<NormalTexture name="AtlasLockNorm"/>
+				<PushedTexture name="AtlasLockPush"/>
+			</Button>
+			<Button name="$parentOptionsButton" inherits="AtlasFrameOptionsButtonTemplate"/>
+			<Button name="$parentLFGButton" hidden="true">
+				<Size x="32" y="32"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-25" y="-39" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentTexture" setAllPoints="true" file="Interface\LFGFrame\LFG-Eye">
+							<TexCoords left="0" right="0.125" top="0" bottom="0.25"></TexCoords>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture file="Interface\Buttons\UI-SquareButton-Up"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+				<Scripts>
+					<OnEnter>
+						Atlas:SearchLFG_Enter(self);
+					</OnEnter>
+					<OnLeave function="GameTooltip_Hide"/>
+					<OnClick>
+						Atlas:SearchLFG();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentMapZoneName" parentKey="ZoneName" inherits="AtlasFrameMapZoneNameTemplate"/>
+			<Button name="$parentCollapseButton" inherits="AtlasFrameCollapseButtonTemplate"/>
+			<Frame name="$parentMapFrame" parentKey="MapFrame" inherits="InsetFrameTemplate">
+				<Size x="519" y="519"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-74"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="AtlasMap">
+							<Size x="512" y="512"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="4" y="-4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<FontString name="AtlasMap_Text" inherits="GameFontHighlightLarge" justifyH="CENTER" justifyV="MIDDLE">
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame name="$parentTopInset" inherits="InsetFrameTemplate">
+				<Size>
+					<AbsDimension x="496" y="120"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMapFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="AtlasText_ZoneName">
+						<Size>
+							<AbsDimension x="450" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="15" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString name="$parent_Text" inherits="GameFontHighlightLarge" justifyH="LEFT">
+									<Size>
+										<AbsDimension x="450" y="20"/>
+									</Size>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+					<Frame name="AtlasText_Location" inherits="AtlasSubHeaderTextTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="AtlasText_ZoneName" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-20"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="AtlasText_LevelRange" inherits="AtlasSubHeaderTextTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="AtlasText_Location" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="AtlasText_RecommendedRange" inherits="AtlasSubHeaderTextTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="AtlasText_LevelRange" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="AtlasText_MinLevel" inherits="AtlasSubHeaderTextTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="AtlasText_RecommendedRange" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="AtlasText_PlayerLimit" inherits="AtlasSubHeaderTextTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="AtlasText_MinLevel" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="AtlasText_MinGearLevel" inherits="AtlasSubHeaderTextTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="AtlasText_PlayerLimit" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>
+								Atlas:DungeonMinGearLevelToolTip(self);
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+						</Scripts>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="$parentBottomInset" inherits="InsetFrameTemplate">
+				<Size>
+					<AbsDimension x="496" y="399"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTopInset" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Button name="$parentSwitchButton" inherits="UIPanelButtonTemplate" hidden="true">
+				<Size>
+					<AbsDimension x="100" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AtlasFrameMapFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<DropdownButton name="$parentSwitchDropdown" inherits="WowStyle1DropdownTemplate" hidden="true">
+				<Size>
+					<AbsDimension x="100" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AtlasFrameMapFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</DropdownButton>
+			<Frame name="AtlasFramePrevNextContainer" parent="AtlasFrameMapFrame">
+				<Size>
+					<AbsDimension x="68" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button parentKey="PrevMap" inherits="AtlasFramePrevMapButtonTemplate" />
+					<Button parentKey="NextMap" inherits="AtlasFrameNextMapButtonTemplate" />
+				</Frames>
+			</Frame>
+			<Button name="$parentAdventureJournalMapButton" parentKey="AdventureJournalMap" inherits="AtlasFrameAdventureJournalMapButtonTemplate"/>
+			<Button name="$parentAdventureJournalButton" parentKey="AdventureJournal" inherits="AtlasFrameAdventureJournalButtonTemplate"/>
+			<Button name="$parentAtlasLootButton" parentKey="AtlasLoot" inherits="AtlasFrameAtlasLootButtonTemplate"/>
+			<EditBox name="AtlasSearchEditBox" inherits="SearchBoxTemplate" letters="40" parent="AtlasFrameBottomInset">
+				<Size>
+					<AbsDimension x="200" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-2" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnTextChanged inherit="append">
+						Atlas:SearchAndRefresh(self:GetText());
+					</OnTextChanged>
+				</Scripts>
+			</EditBox>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Atlas.Templates.CreateFrameDropDownType(self:GetName().."DropDownType", self)
+				Atlas.Templates.CreateFrameDropDown(self:GetName().."DropDown", self)
+				Atlas_OnLoad(self);
+			</OnLoad>
+			<OnShow>
+				Atlas_OnShow();
+				PlaySound(844);
+				ATLAS_SMALLFRAME_SELECTED = false;
+			</OnShow>
+			<OnHide>
+				AtlasFrame:StopMovingOrSizing();
+				PlaySound(845);
+			</OnHide>
+			<OnDragStart>
+				if(button == "LeftButton") then
+					Atlas:StartMoving(self);
+				end
+			</OnDragStart>
+			<OnDragStop>
+				AtlasFrame:StopMovingOrSizing();
+			</OnDragStop>
+			<OnMouseUp>
+				AtlasFrame:StopMovingOrSizing();
+				if (button == "RightButton") then
+					if (Atlas.db.profile.options.frames.rightClick) then
+						Atlas_Toggle();
+						ToggleFrame(WorldMapFrame);
+					end
+				end
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+
+	<Frame name="AtlasFrameSmall" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true" inherits="PortraitFrameTemplate">
+		<Size>
+			<AbsDimension x="526" y="631"/>
+		</Size>
+		<Anchors>
+ 			<Anchor point="TOPLEFT">
+ 				<Offset>
+ 					<AbsDimension x="0" y="-104"/>
+ 				</Offset>
+ 			</Anchor>
+ 		</Anchors>
+		<Frames>
+			<Button name="$parentLockButton" inherits="AtlasFrameLockButtonTemplate" propagateMouseInput="Motion">
+				<NormalTexture name="AtlasLockSmallNorm"/>
+				<PushedTexture name="AtlasLockSmallPush"/>
+			</Button>
+			<Button name="$parentOptionsButton" inherits="AtlasFrameOptionsButtonTemplate" propagateMouseInput="Motion"/>
+			<Button name="$parentExpandButton" inherits="AtlasFrameExpandButtonTemplate" propagateMouseInput="Motion"/>
+			<Button name="$parentMapZoneName" parentKey="ZoneName" inherits="AtlasFrameMapZoneNameTemplate" propagateMouseInput="Motion"/>
+			<Frame name="$parentMapFrame" parentKey="MapFrame" inherits="InsetFrameTemplate">
+				<Size x="519" y="519"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-74"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="AtlasMapSmall">
+							<Size x="512" y="512"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="4" y="-4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<FontString name="AtlasMapS_Text" inherits="GameFontHighlightLarge" justifyH="CENTER" justifyV="MIDDLE">
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Button name="$parentSwitchButton" inherits="UIPanelButtonTemplate" hidden="true" propagateMouseInput="Motion">
+				<Size>
+					<AbsDimension x="100" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AtlasFrameSmallMapFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<DropdownButton name="$parentSwitchDropdown" inherits="WowStyle1DropdownTemplate" hidden="true" propagateMouseInput="Motion">
+				<Size>
+					<AbsDimension x="100" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AtlasFrameSmallMapFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</DropdownButton>
+			<Frame name="$parentPrevNextContainer">
+				<Size>
+					<AbsDimension x="68" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP"  relativeTo="AtlasFrameSmallMapFrame" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button parentKey="PrevMap" inherits="AtlasFramePrevMapButtonTemplate" propagateMouseInput="Motion" />
+					<Button parentKey="NextMap" inherits="AtlasFrameNextMapButtonTemplate" propagateMouseInput="Motion" />
+				</Frames>
+			</Frame>
+			<Button name="$parentAdventureJournalMapButton" parentKey="AdventureJournalMap" inherits="AtlasFrameAdventureJournalMapButtonTemplate" propagateMouseInput="Motion">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="AtlasFrameSmallMapFrame" relativePoint="BOTTOMRIGHT" x="-4" y="-8"/>
+				</Anchors>
+			</Button>
+			<Button name="$parentAdventureJournalButton" parentKey="AdventureJournal" inherits="AtlasFrameAdventureJournalButtonTemplate" propagateMouseInput="Motion"/>
+			<Button name="$parentAtlasLootButton" parentKey="AtlasLoot" inherits="AtlasFrameAtlasLootButtonTemplate" propagateMouseInput="Motion"/>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Atlas.Templates.CreateFrameDropDownType(self:GetName().."DropDownType", self)
+				Atlas.Templates.CreateFrameDropDown(self:GetName().."DropDown", self)
+			</OnLoad>
+			<OnShow>
+				Atlas_OnShow();
+				ATLAS_SMALLFRAME_SELECTED = true;
+				PlaySound(844);
+			</OnShow>
+			<OnHide>
+				AtlasFrameSmall:StopMovingOrSizing();
+				PlaySound(845);
+			</OnHide>
+			<OnMouseDown>
+				if(button == "LeftButton") then
+					Atlas:StartMoving(self);
+				end
+			</OnMouseDown>
+			<OnDragStop>
+				AtlasFrameSmall:StopMovingOrSizing();
+			</OnDragStop>
+			<OnMouseUp>
+				AtlasFrameSmall:StopMovingOrSizing();
+				if (button == "RightButton") then
+					if (Atlas.db.profile.options.frames.rightClick) then
+						Atlas_Toggle();
+						ToggleFrame(WorldMapFrame);
+					end
+				end
+			</OnMouseUp>
+			<OnEnter>
+				AtlasFrameSmall:SetAlpha(1)
+			</OnEnter>
+			<OnLeave>
+				Atlas:UpdateSmallAlpha()
+			</OnLeave>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,215 @@
+<!--
+
+	Atlas, a World of Warcraft instance map browser
+	Copyright 2005 ~ 2010 - Dan Gilbert <dan.b.gilbert at gmail dot com>
+	Copyright 2010 - Lothaer <lothayer at gmail dot com>, Atlas Team
+	Copyright 2011 ~ 2023 - Arith Hsu, Atlas Team <atlas.addon at gmail dot com>
+
+	This file is part of Atlas.
+
+	Atlas is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+
+	Atlas is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with Atlas; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+	<Script file="EJLoot.lua"/>
+
+	<Button name="AtlasEncounterItemTemplate" inherits="EncounterItemTemplate" virtual="true">
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentArmorClass" inherits="GameFontWhite" justifyH="RIGHT" parentKey="armorType">
+					<Size x="0" y="12"/>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.name" relativePoint="TOPLEFT" x="264" y="-30"/>
+					</Anchors>
+					<Color r="1" g="1" b="1" a="0.7"/>
+				</FontString>
+				<FontString name="$parentSlot" inherits="GameFontWhite" justifyH="LEFT" parentKey="slot">
+					<Size x="0" y="12"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.icon" x="7" y="5"/>
+						<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" relativeKey="$parent.armorType" x="-15" y="0"/>
+					</Anchors>
+					<Color r="1" g="1" b="1" a="0.95"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(self, "ANCHOR_LEFT");
+				Atlas_EncounterJournal_SetTooltip(self.link, self.itemID);
+				self.showingTooltip = true;
+				self:SetScript("OnUpdate", Atlas_EncounterJournal_Loot_OnUpdate);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+				self.showingTooltip = false;
+				self:SetScript("OnUpdate", nil);
+				ResetCursor();
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Frame name="AtlasEJLootFrame" toplevel="true" enableMouse="true" parent="AtlasFrameBottomInset" hidden="true" frameStrata="HIGH">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="AtlasFrameBottomInset" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="-4"/>
+				</Offset>
+			</Anchor>
+			<Anchor point="BOTTOMRIGHT" relativeTo="AtlasFrameBottomInset" relativePoint="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parent_Back">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT"/>
+					</Anchors>
+					<Color r="0" g="0" b="0" a="0.95"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+				<Size x="32" y="32"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" x="8" y="8"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						AtlasEJLootFrame:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame parentKey="lootScroll">
+				<Size x="468" y="260"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+				</Anchors>
+				<Frames>
+					<DropdownButton parentKey="filter" inherits="WowStyle1DropdownTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="30" y="-15"/>
+						</Anchors>
+					</DropdownButton>
+					<DropdownButton parentKey="slotFilter" inherits="WowStyle1DropdownTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.filter" relativePoint="TOPRIGHT" x="5" />
+						</Anchors>
+					</DropdownButton>
+					<DropdownButton parentKey="difficulty" inherits="WowStyle1DropdownTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.slotFilter" relativePoint="TOPRIGHT" x="5" />
+						</Anchors>
+					</DropdownButton>
+					<Frame name="$parentClassFilterClearFrame" parentKey="classClearFilter" hidden="true" enableMouse="true">
+						<Size x="455" y="28"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.filter" relativePoint="BOTTOMLEFT" x="-20" y="-5"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture file="Interface\EncounterJournal\UI-EncounterJournalTextures" >
+									<Size x="380" y="28"/>
+									<Anchors>
+										<Anchor point="CENTER" x="-5" y="0"/>
+									</Anchors>
+									<TexCoords left="0.00195313" right="0.62695313" top="0.58886719" bottom="0.61621094"/>
+								</Texture>
+							</Layer>
+							<Layer level="OVERLAY">
+								<FontString inherits="GameFontNormalSmall" parentKey="text">
+									<Size x="0" y="0"/>
+									<Anchors>
+										<Anchor point="LEFT" x="25" y="2"/>
+									</Anchors>
+									<Color r="0.973" g="0.902" b="0.581"/>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Button name="$parentExitButton">
+								<Size x="20" y="20"/>
+								<Anchors>
+									<Anchor point="RIGHT" x="-20" y="2"/>
+								</Anchors>
+								<Layers>
+									<Layer level="ARTWORK">
+										<Texture file="Interface\FriendsFrame\ClearBroadcastIcon" alpha="0.8" parentKey="texture">
+											<Size x="17" y="17"/>
+											<Anchors>
+												<Anchor point="TOPLEFT" x="0" y="0"/>
+											</Anchors>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnEnter>
+										self.texture:SetAlpha(1.0);
+									</OnEnter>
+									<OnLeave>
+										self.texture:SetAlpha(0.8);
+									</OnLeave>
+									<OnMouseDown>
+										self.texture:SetPoint("TOPLEFT", 1, -1);
+									</OnMouseDown>
+									<OnMouseUp>
+										self.texture:SetPoint("TOPLEFT", 0, 0);
+									</OnMouseUp>
+									<OnClick>
+										PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+										Atlas_EJ_ResetLootFilter();
+										AtlasEJLootFrame.lootScroll.filter:GenerateMenu();
+										Atlas_EncounterJournal_LootUpdate();
+										self:GetParent():Hide();
+									</OnClick>
+								</Scripts>
+							</Button>
+						</Frames>
+					</Frame>
+					<Frame parentKey="ScrollBox" inherits="WowScrollBoxList">
+						<Size x="432" y="340"/>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" x="-25" />
+						</Anchors>
+					</Frame>
+					<EventFrame parentKey="ScrollBar" inherits="MinimalScrollBar">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.ScrollBox" relativePoint="TOPRIGHT" x="5" y="-5"/>
+							<Anchor point="BOTTOMLEFT" relativeKey="$parent.ScrollBox" relativePoint="BOTTOMRIGHT" x="5" y="5"/>
+						</Anchors>
+					</EventFrame>
+				</Frames>
+				<Scripts>
+					<OnShow>
+                       -- Atlas_EncounterJournal_LootUpdate(self);
+					</OnShow>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad function="Atlas_EncounterJournal_OnLoad" />
+			<OnShow function="Atlas_EncounterJournal_OnShow" />
+			<OnEvent function="Atlas_EncounterJournal_OnEvent"/>
+		</Scripts>
+	</Frame>
+
+</Ui>

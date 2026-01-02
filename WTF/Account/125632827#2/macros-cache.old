@@ -1,0 +1,36 @@
+VER 3 000000000000000A "   " "134400"
+END
+VER 3 0000000000000001 "camfix" "134400"
+/console cameraDistanceMaxZoomFactor 4
+END
+VER 3 0000000000000005 "details" "135358"
+/details toggle 3
+/details toggle 4
+/details toggle 5
+END
+VER 3 0000000000000009 "p3" "132230"
+/pull 3
+END
+VER 3 0000000000000004 "RXPTargeting" "Ability_eyeoftheowl"
+/targetexact Palemane Skinner
+/targetexact Palemane Tanner
+/targetexact Snagglespear
+/targetlasttarget [dead]
+END
+VER 3 0000000000000007 "sda" "135966"
+/tar digmaster
+/targetexact Digmaster Shovelphlange
+END
+VER 3 0000000000000008 "sda" "134400"
+/3 LFM ONYXIA - 1SR>MS>OS, head and skin hr (27/30) Need dps
+END
+VER 3 0000000000000006 "spam" "134400"
+/run C_GossipInfo.SelectAvailableQuest( C_GossipInfo.GetAvailableQuests()[3]["questID"])
+/run SelectAvailableQuest(3)
+/run AcceptQuest()
+/run CompleteQuest(3)
+/run GetQuestReward(3)
+END
+VER 3 0000000000000002 "tarjed" "134400"
+/tar Jed
+END

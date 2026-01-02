@@ -1,0 +1,26 @@
+## Interface: 50500
+## Title: Alts
+## Notes: Manages social information with a focus on main-alt associations.
+## Author: Talryn
+## Version: 11.1.0
+## OptionalDeps: Ace3, LibDeformat-3.0, lib-st, LibDataBroker-1.1, LibDBIcon-1.0
+## AddonCompartmentFunc: Alts_OnAddonCompartmentClick
+## IconTexture: Interface\Icons\Achievement_GuildPerk_EverybodysFriend.blp
+## X-Embeds: Ace3
+## X-Category: Interface Enhancements
+## SavedVariables: AltsDB
+## X-Curse-Project-ID: 26572
+## X-WoWI-ID: 24950
+## X-Wago-ID: RBKpnZNE
+
+embeds.xml
+
+locale.xml
+
+Core.lua
+RealmData.lua
+AltsDB.lua
+Alts.lua
+BNet.lua
+Options.lua
+InterfaceMods.lua

@@ -1,0 +1,8 @@
+TradeSkillMaster: enabled
+TradeSkillMaster_AppHelper: enabled
+Blizzard_CompactRaidFrames: enabled
+OPie_Classic: disabled
+WeakAurasCompanion: enabled
+WeakAurasArchive: enabled
+Leatrix_Maps: enabled
+Leatrix_Plus: enabled

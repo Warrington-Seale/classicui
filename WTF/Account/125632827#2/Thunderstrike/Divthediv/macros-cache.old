@@ -1,0 +1,73 @@
+VER 3 0000000001000005 "bro" "134400"
+/s spin with me,  brøthers!
+END
+VER 3 000000000100000A "CH1" "134400"
+#showtooltip
+/use [nodead, noharm, @mouseover, exists] [] Chain Heal(Rank 1)
+END
+VER 3 0000000001000009 "CH3" "134400"
+#showtooltip
+/use [nodead, noharm, @mouseover, exists] [] Chain heal
+END
+VER 3 0000000001000012 "GRPSWAP" "134400"
+/run SwapRaidSubgroup(1, 7)
+END
+VER 3 0000000001000011 "HEALZGHEAR" "136052"
+/gq switch resto
+END
+VER 3 0000000001000004 "htotem" "134400"
+#showtooltip
+/castsequence reset=10 Mana spring totem, Stoneskin Totem, Windfury Totem, Searing Totem, null
+END
+VER 3 000000000100000C "HW1" "134400"
+#showtooltip
+/use [nodead, noharm, @mouseover, exists] [] Healing Wave(Rank 1)
+END
+VER 3 0000000001000008 "HW10" "134400"
+#showtooltip
+/use [nodead, noharm, @mouseover, exists] [] Healing Wave
+END
+VER 3 000000000100000B "HW5" "134400"
+#showtooltip
+/use [nodead, noharm, @mouseover, exists] [] Healing Wave(Rank 5)
+END
+VER 3 000000000100000E "LHW" "134400"
+#showtooltip
+/use [nodead, noharm, @mouseover, exists] [] Lesser Healing Wave
+END
+VER 3 000000000100000F "morez" "134400"
+#showtooltip Ancestral Spirit
+/use [@mouseover, dead, noharm, exists] Ancestral Spirit
+END
+VER 3 0000000001000007 "ohshit" "134400"
+#showtooltip
+/use nature's swiftness
+/use healing wave
+END
+VER 3 0000000001000003 "purgeannounce" "134400"
+#showtooltip
+/use purge
+/s Purge @%t.
+END
+VER 3 0000000001000001 "shockattack" "134400"
+#showtooltip
+/use flame shock
+/startattack
+END
+VER 3 0000000001000010 "SKINGEAR" "133611"
+/gq switch skin
+END
+VER 3 000000000100000D "TIDE" "134400"
+#showtooltip
+/use Mana Tide Totem
+/p MANA TIDE UP!
+/script C_Timer.After(12, function() SendChatMessage(“MANA TIDE FADED!”,“PARTY”); end)
+END
+VER 3 0000000001000002 "totems" "134400"
+#showtooltip
+/castsequence reset=10 Mana spring totem, Strength of Earth Totem, Windfury Totem, Searing Totem, null
+END
+VER 3 0000000001000006 "TT Cast" "INV_MISC_QUESTIONMARK"
+#showtooltips
+/castsequence reset=combat/15 Nature Resistance Totem(Rank 3), Strength of Earth Totem(Rank 4), Poison Cleansing Totem()
+END

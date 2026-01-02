@@ -1,0 +1,161 @@
+VER 3 000000000100001E "arend" "134400"
+#showtooltip
+/use [stance: 3] battle stance
+/use rend
+/startattack
+END
+VER 3 0000000001000014 "br" "134400"
+#showtooltip Berserker Rage
+/use [nostance:3] Berserker Stance
+/use Berserker Rage
+END
+VER 3 000000000100001A "bth" "134400"
+#showtooltip
+/use bloodthirst
+/startattack
+/use shield block
+END
+VER 3 0000000001000006 "c" "134400"
+#showtooltip charge
+/cancelaura bloodrage
+/use [nostance:1] Battle Stance;
+/use  Charge
+/use Berserker Stance
+/startattack
+END
+VER 3 0000000001000012 "cds" "134400"
+#showtooltip
+/use [stance:1] Retaliation
+/use [stance:2] Shield Wall
+/use [stance:3] recklessness
+END
+VER 3 000000000100001D "cfp" "134400"
+#showtooltip charge
+/cancelaura bloodrage
+/use [nostance:1] Battle Stance;
+/use  Charge
+/use Defensive Stance
+/startattack
+END
+VER 3 0000000001000011 "clv" "134400"
+#showtooltip cleave
+/use cleave
+/startattack
+END
+VER 3 000000000100000F "da" "134400"
+#showtooltip Disarm
+/use [nostance:2] Defensive Stance;
+/use  Disarm
+/startattack
+END
+VER 3 0000000001000013 "exe" "134400"
+#showtooltip Execute
+/use [nostance:1] Battle Stance
+/use Execute
+END
+VER 3 0000000001000018 "hs" "134400"
+#showtooltip
+/use [stance:2] Battle stance
+/use hamstring
+END
+VER 3 000000000100000C "hs" "134400"
+#showtooltip Heroic Strike
+/use Heroic Strike
+/startattack
+END
+VER 3 0000000001000015 "ic" "134400"
+#showtooltip Intercept
+/use [nostance:3] Berserker Stance
+/use Intercept
+END
+VER 3 0000000001000010 "mooc" "134400"
+#showtooltip Mocking Blow
+/use [nostance:1] Battle Stance;
+/use  Mocking Blow
+/startattack
+END
+VER 3 0000000001000002 "OP" "134400"
+#showtooltip Overpower
+/use [nostance:1] Battle Stance; 
+/use Overpower
+/startattack
+END
+VER 3 0000000001000020 "p15" "135799"
+/pull 15
+END
+VER 3 000000000100001C "p5" "377273"
+/pull 5
+END
+VER 3 0000000001000017 "pml" "134400"
+#showtooltip Pummel
+/use [nostance:3] Berserker Stance
+/use Pummel
+END
+VER 3 000000000100000D "r" "134400"
+#showtooltip
+/cast [equipped:Bows] Shoot Bow; [equipped:Guns] Shoot Gun; [equipped:Crossbows] Shoot Crossbow; [equipped:Thrown] Throw
+END
+VER 3 0000000001000009 "Rev" "134400"
+#showtooltip revenge
+/use [nostance:2] Defensive stance
+/use Revenge
+/startattack
+END
+VER 3 0000000001000008 "SB" "134400"
+#showtooltip Shield Bash
+/use [nostance: 2] Defensive Stance
+/use Shield Bash
+END
+VER 3 000000000100000E "sb" "134400"
+#showtooltip shield block
+/use [nostance:2] Defensive Stance;
+/use  Shield Block
+/startattack
+END
+VER 3 0000000001000021 "slam" "134400"
+#showtooltip 
+/use slam
+/startattack
+END
+VER 3 0000000001000019 "ss" "134400"
+#showtooltip
+/use [nostance:1] Battle stance
+/use Sweeping Strikes
+END
+VER 3 000000000100000A "sunder" "134400"
+#showtooltip Sunder Armor
+/use Sunder Armor
+/startattack
+END
+VER 3 000000000100001F "tank" "133205"
+/gq switch tonmk tonknoflask
+END
+VER 3 0000000001000005 "tauntstance" "134400"
+#showtooltip taunt
+/use [nostance:2] Defensive Stance;
+/use  Taunt
+END
+VER 3 000000000100000B "trc" "134400"
+#showtooltip Thunder Clap
+/use [nostance:1] battle stance
+/use Thunder Clap
+/startattack
+END
+VER 3 0000000001000007 "w2h" "134400"
+#showtooltip
+/equipslot 17 The Immovable Object
+/equipslot 16 The Lobotomizer
+/equipslot 16 Hyperthermically Insulated Lava Dredger
+END
+VER 3 000000000100001B "wdw" "134400"
+#showtooltip
+/eqiupslot 16 The Lobotomizerr
+/equipslot 17 The Immovable Object
+/equipslot 17 Glacial Blade
+END
+VER 3 0000000001000016 "ww" "134400"
+#showtooltip Whirlwind
+/use [nostance:3] Berserker Stance
+/use Whirlwind
+/startattack
+END
