@@ -1,7 +1,10 @@
 # Clique
 
-## [v4.2.13-release](https://github.com/jnwhiteh/Clique/tree/v4.2.13-release) (2025-12-25)
-[Full Changelog](https://github.com/jnwhiteh/Clique/compare/v4.2.11-release...v4.2.13-release) [Previous Releases](https://github.com/jnwhiteh/Clique/releases)
+## [v4.2.14-release](https://github.com/jnwhiteh/Clique/tree/v4.2.14-release) (2026-01-01)
+[Full Changelog](https://github.com/jnwhiteh/Clique/compare/v4.2.13-release...v4.2.14-release) [Previous Releases](https://github.com/jnwhiteh/Clique/releases)
 
-- Fix an issue with non-interactive "Add Bindings" page  
-- Fix some bugs in AddonCore  
+- Use a common icon for Run Custom Macro on retail/classic  
+- Try to handle missing Atlas textures  
+- Update TOC and add plugin for Classic Era-BCC  
+- Don't error if no Blizzard plugin enabled  
+- Fix type declarations for luacheck/lua\_ls  

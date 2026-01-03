@@ -35,8 +35,9 @@
 
 local addonName = select(1, ...)
 
----@class addon
+--- @class CliqueAddon: AddonCore
 local addon = select(2, ...)
+
 local L = addon.L
 
 local twipe = table.wipe
@@ -202,7 +203,9 @@ function addon:Initialize()
         end
     end
 
-    self:IntegrateBlizzardFrames()
+    if self.IntegrateBlizzardFrames then
+        self:IntegrateBlizzardFrames()
+    end
 
     -- Register the named frame
     self:RegisterFrame(self.namedbutton)

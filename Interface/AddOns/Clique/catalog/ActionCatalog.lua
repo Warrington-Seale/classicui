@@ -13,7 +13,7 @@ local catalog = addon.catalog
 
 local TARGET_ICON = 132331
 local MENU_ICON = 132212
-local CUSTOMMACRO_ICON = 4635266
+local CUSTOMMACRO_ICON = 134332
 
 lib.actionId = {
     TARGET = "target",

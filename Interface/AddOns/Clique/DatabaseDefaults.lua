@@ -2,7 +2,7 @@
 --  Clique - Copyright 2006-2024 - James N. Whitehead II
 -------------------------------------------------------------------]] ---
 
----@class addon
+---@class CliqueAddon
 local addon = select(2, ...)
 
 addon.defaults = {

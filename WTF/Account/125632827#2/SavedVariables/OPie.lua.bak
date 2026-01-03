@@ -5,7 +5,7 @@ OPie_SavedData = {
 },
 ["_OPieVersion"] = "7.11.2 (4.137)",
 ["_StoreVersion"] = 122,
-["_GameLocale"] = "enUS",
+["_GameVersion"] = "1.15.8",
 ["_StoreVersion2"] = 122,
 ["ProfileStorage"] = {
 ["default"] = {
@@ -13,8 +13,8 @@ OPie_SavedData = {
 ["ABueRRXk3ie"] = "ABueRRXk3i1",
 },
 ["Bindings"] = {
-["pots"] = "SHIFT-V",
 ["RaidSymbols"] = "BUTTON5",
+["pots"] = "SHIFT-V",
 ["drood"] = "SHIFT-T",
 ["droodforms"] = "T",
 },
@@ -22,6 +22,19 @@ OPie_SavedData = {
 },
 ["PersistentStorage"] = {
 ["RingKeeper"] = {
+["pots"] = {
+{
+"item",
+118,
+["sliceToken"] = "ABueRRDx=6w",
+},
+["save"] = true,
+["limit"] = "Divstars-Thunderstrike",
+["name"] = "pots",
+},
+["OPieFlagStore"] = {
+["StoreVersion"] = 3,
+},
 ["foodrink"] = {
 {
 "item",
@@ -43,55 +56,42 @@ OPie_SavedData = {
 1205,
 ["sliceToken"] = "ABueRRXk3it",
 },
+["save"] = true,
+["limit"] = "Divstars-Thunderstrike",
 ["name"] = "foodrink",
-["save"] = true,
-["limit"] = "Divstars-Thunderstrike",
-},
-["OPieFlagStore"] = {
-["StoreVersion"] = 3,
-},
-["pots"] = {
-{
-"item",
-118,
-["sliceToken"] = "ABueRRDx=6w",
-},
-["name"] = "pots",
-["save"] = true,
-["limit"] = "Divstars-Thunderstrike",
 },
 ["drood"] = {
 {
-["sliceToken"] = "ABueRRnDVSw",
 ["id"] = 1126,
+["sliceToken"] = "ABueRRnDVSw",
 },
 {
-["sliceToken"] = "ABueRR9Va6e",
 ["id"] = 467,
+["sliceToken"] = "ABueRR9Va6e",
 },
 {
-["sliceToken"] = "ABueRR02/xw",
 ["id"] = 18960,
+["sliceToken"] = "ABueRR02/xw",
 },
 {
 "ring",
 "foodrink",
 ["sliceToken"] = "ABueRRXk3ie",
 },
-["limit"] = "Divstars-Thunderstrike",
 ["save"] = true,
 ["name"] = "drood",
+["limit"] = "Divstars-Thunderstrike",
 },
 ["droodforms"] = {
 {
-["sliceToken"] = "ABueRR02/xe",
 ["id"] = 5487,
+["sliceToken"] = "ABueRR02/xe",
 },
-["limit"] = "Divstars-Thunderstrike",
 ["save"] = true,
 ["name"] = "droodforms",
+["limit"] = "Divstars-Thunderstrike",
 },
 },
 },
-["_GameVersion"] = "1.15.8",
+["_GameLocale"] = "enUS",
 }

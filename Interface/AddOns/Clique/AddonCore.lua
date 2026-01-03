@@ -15,8 +15,8 @@
 
 local addonName = select(1, ...)
 
----@class addon
 local addon = select(2, ...)
+---@cast addon AddonCore
 
 -- Set global name of addon
 _G[addonName] = addon
@@ -73,14 +73,14 @@ end
 -------------------------------------------------------------------------]]--
 
 -- Returns true if the API value is true-ish (handles old 1/nil returns)
-function addon:APIIsTrue(val, ...)
-    if type(val) == "boolean" then
+function addon:APIIsTrue(val)
+	if type(val) == "boolean" then
         return val
-    elseif type(val) == "number" then
-        return val == 1
-    else
-        return false
-    end
+	elseif type(val) == "number" then
+		return val == 1
+	else
+		return false
+	end
 end
 
 local projects = {
@@ -153,7 +153,7 @@ end
 --  Event registration and dispatch
 -------------------------------------------------------------------------]]--
 
-addon.eventFrame = CreateFrame("Frame", addonName .. "EventFrame", UIParent)
+local eventFrame = CreateFrame("Frame", addonName .. "EventFrame", UIParent)
 local eventMap = {}
 local EventedMixin = {}
 
@@ -193,7 +193,7 @@ function EventedMixin:RegisterEvent(event, handler)
     table.insert(eventMap[event], handler)
 
     if #eventMap[event] == 1 then
-        addon.eventFrame:RegisterEvent(event)
+        eventFrame:RegisterEvent(event)
     end
 end
 
@@ -218,12 +218,12 @@ function EventedMixin:UnregisterEvent(event, handler)
 
         if #eventMap[event] == 0 then
             eventMap[event] = nil
-            addon.eventFrame:UnregisterEvent(event)
+            eventFrame:UnregisterEvent(event)
         end
     end
 end
 
-addon.eventFrame:SetScript("OnEvent", function(frame, event, ...)
+eventFrame:SetScript("OnEvent", function(frame, event, ...)
     local handlers = eventMap[event]
     if not handlers then return end
 
@@ -307,7 +307,6 @@ function MessagedMixin:UnregisterMessage(message, handler)
 
         if #messageMap[message] == 0 then
             messageMap[message] = nil
-            addon.messageFrame:Unregistermessage(message)
         end
     end
 end

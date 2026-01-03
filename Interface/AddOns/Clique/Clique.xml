@@ -2,23 +2,23 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ http://wowprogramming.com/FrameXML/UI.xsd">
 
     <!-- Ensure we always have access to Backdrops on both classic and retail -->
-    <Frame name="Clique_BackdropTemplate" virtual="true">
-        <Scripts>
-            <OnLoad>
-                if BackdropTemplateMixin then
-                    Mixin(self, BackdropTemplateMixin);
-                end
-            </OnLoad>
-            <OnSizeChanged>
-                if self.OnBackdropSizeChanged then
-                    self:OnBackdropSizeChanged();
-                end
-            </OnSizeChanged>
-        </Scripts>
-    </Frame>
+	<Frame name="Clique_BackdropTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				if BackdropTemplateMixin then
+				    Mixin(self, BackdropTemplateMixin)
+				end
+			</OnLoad>
+			<OnSizeChanged>
+				if self.OnBackdropSizeChanged then
+				    self:OnBackdropSizeChanged()
+				end
+			</OnSizeChanged>
+		</Scripts>
+	</Frame>
 
 	<CheckButton name="CliqueMacroIconTemplate" enableMouse="true" virtual="true">
-        <Size x="32" y="32"/>
+		<Size x="32" y="32"/>
 		<Layers>
 			<Layer level="OVERLAY">
 				<Texture parentKey="SelectedTexture" alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight" hidden="true">
@@ -33,14 +33,14 @@
 		<HighlightTexture atlas="UI-HUD-ActionBar-IconFrame-Mouseover" alphaMode="ADD"/>
 	</CheckButton>
 
-    <Button name="CliqueBindingTemplate" enableMouse="true" virtual="true">
-        <Size x="200" y="46"/>
+	<Button name="CliqueBindingTemplate" enableMouse="true" virtual="true">
+		<Size x="200" y="46"/>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture parentKey="Background" atlas="ClickCastList-ButtonBackground" useAtlasSize="false">
+				<Texture parentKey="Background">
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
-                        <Anchor point="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMRIGHT"/>
 					</Anchors>
 				</Texture>
 			</Layer>
@@ -71,10 +71,10 @@
 				</FontString>
 			</Layer>
 			<Layer level="HIGHLIGHT">
-				<Texture parentKey="FrameHighlight" atlas="ClickCastList-ButtonHighlight" useAtlasSize="false" alphaMode="ADD">
+				<Texture parentKey="FrameHighlight" alphaMode="ADD">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="0" y="0"/>
-                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
 					</Anchors>
 				</Texture>
 			</Layer>
@@ -97,16 +97,31 @@
 				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
 			</Button>
 		</Frames>
-    </Button>
+		<Scripts>
+			<OnLoad>
+				local maybeSetAtlas = function(texture, atlasName, useAtlasSize)
+				    if C_Texture and C_Texture.GetAtlasID then
+				        local id = C_Texture.GetAtlasID(atlasName)
+				        if id and id ~= 0 then
+				            texture:SetAtlas(atlasName, useAtlasSize)
+				        end
+				    end
+				end
 
-    <Button name="CliqueBindingSummaryTemplate" enableMouse="true" virtual="true">
-        <Size x="200" y="100"/>
+				maybeSetAtlas(self.Background, "ClickCastList-ButtonBackground", false)
+				maybeSetAtlas(self.FrameHighlight, "ClickCastList-ButtonHighlight", false)
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<Button name="CliqueBindingSummaryTemplate" enableMouse="true" virtual="true">
+		<Size x="200" y="100"/>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture parentKey="Background" atlas="ClickCastList-ButtonBackground" useAtlasSize="false">
+				<Texture parentKey="Background">
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
-                        <Anchor point="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMRIGHT"/>
 					</Anchors>
 				</Texture>
 			</Layer>
@@ -137,15 +152,30 @@
 				</FontString>
 			</Layer>
 			<Layer level="HIGHLIGHT">
-				<Texture parentKey="FrameHighlight" atlas="ClickCastList-ButtonHighlight" useAtlasSize="false" alphaMode="ADD">
+				<Texture parentKey="FrameHighlight" alphaMode="ADD">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="0" y="0"/>
-                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
 					</Anchors>
 				</Texture>
 			</Layer>
 		</Layers>
-    </Button>
+		<Scripts>
+			<OnLoad>
+				local maybeSetAtlas = function(texture, atlasName, useAtlasSize)
+				    if C_Texture and C_Texture.GetAtlasID then
+				        local id = C_Texture.GetAtlasID(atlasName)
+				        if id and id ~= 0 then
+				            texture:SetAtlas(atlasName, useAtlasSize)
+				        end
+				    end
+				end
+
+				maybeSetAtlas(self.Background, "ClickCastList-ButtonBackground", false)
+				maybeSetAtlas(self.FrameHighlight, "ClickCastList-ButtonHighlight", false)
+			</OnLoad>
+		</Scripts>
+	</Button>
 
 	<Frame name="CliqueScrollingEditBoxTemplate" inherits="TooltipBackdropTemplate" virtual="true">
 		<Size x="287" y="85"/>
