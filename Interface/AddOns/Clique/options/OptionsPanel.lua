@@ -228,7 +228,7 @@ function panel:CreateOptions()
     self.profilelabel:SetText(L["Profile Management:"])
     self.profiledd = make_dropdown("CliqueOptionsProfileMgmt", self)
 
-	self.stopcastingfix = make_checkbox("CliqueOptionsStopCastingFix", self)
+    self.stopcastingfix = make_checkbox("CliqueOptionsStopCastingFix", self)
     self.stopcastingfix.text:SetText(L["Attempt to fix the issue introduced in 4.3 with casting on dead targets"])
 
     self.exportbindingslabel = make_label("CliqueOptionsExportBindingsLabel", self, "GameFontNormalSmall")
@@ -282,7 +282,7 @@ function panel:CreateOptions()
     table.insert(bits, self.disableDuringHousing)
     table.insert(bits, self.updown)
     table.insert(bits, self.fastooc)
-	table.insert(bits, self.stopcastingfix)
+    table.insert(bits, self.stopcastingfix)
 
     if #self.talentProfiles > 0 then
         table.insert(bits, self.specswap)
@@ -322,7 +322,7 @@ function panel:CreateOptions()
 end
 
 StaticPopupDialogs["CLIQUE_CONFIRM_PROFILE_DELETE"] = {
-	preferredIndex = STATICPOPUPS_NUMDIALOGS,
+    preferredIndex = STATICPOPUPS_NUMDIALOGS,
     button1 = L["Yes"],
     button2 = L["No"],
     hideOnEscape = 1,
@@ -337,50 +337,50 @@ local function messageAndSwitchProfile(profileName)
 end
 
 StaticPopupDialogs["CLIQUE_NEW_PROFILE"] = {
-	preferredIndex = STATICPOPUPS_NUMDIALOGS,
-	text = L["Enter the name of a new profile you'd like to create"],
-	button1 = L["Okay"],
-	button2 = L["Cancel"],
-	OnAccept = function(self)
-		local base = self:GetName()
-		local editbox = _G[base .. "EditBox"]
+    preferredIndex = STATICPOPUPS_NUMDIALOGS,
+    text = L["Enter the name of a new profile you'd like to create"],
+    button1 = L["Okay"],
+    button2 = L["Cancel"],
+    OnAccept = function(self)
+        local base = self:GetName()
+        local editbox = _G[base .. "EditBox"]
         local profileName = editbox:GetText()
         messageAndSwitchProfile(profileName)
-	end,
-	timeout = 0,
-	whileDead = 1,
-	exclusive = 1,
-	showAlert = 1,
-	hideOnEscape = 1,
-	hasEditBox = 1,
-	maxLetters = 32,
-	OnShow = function(self)
-		_G[self:GetName().."Button1"]:Disable();
-		_G[self:GetName().."EditBox"]:SetFocus();
-	end,
-	EditBoxOnEnterPressed = function(self)
-		local button = _G[self:GetParent():GetName().."Button1"]
-		if addon:APIIsTrue(button:IsEnabled()) then
-			local base = self:GetParent():GetName()
-			local editbox = _G[base .. "EditBox"]
-			local profileName = editbox:GetText()
-			messageAndSwitchProfile(profileName)
-		end
-		self:GetParent():Hide();
-	end,
-	EditBoxOnTextChanged = function (self)
-		local editBox = _G[self:GetParent():GetName().."EditBox"];
-		local txt = editBox:GetText()
-		if #txt > 0 then
-			_G[self:GetParent():GetName().."Button1"]:Enable();
-		else
-			_G[self:GetParent():GetName().."Button1"]:Disable();
-		end
-	end,
-	EditBoxOnEscapePressed = function(self)
-		self:GetParent():Hide();
-		ClearCursor();
-	end
+    end,
+    timeout = 0,
+    whileDead = 1,
+    exclusive = 1,
+    showAlert = 1,
+    hideOnEscape = 1,
+    hasEditBox = 1,
+    maxLetters = 32,
+    OnShow = function(self)
+        _G[self:GetName().."Button1"]:Disable();
+        _G[self:GetName().."EditBox"]:SetFocus();
+    end,
+    EditBoxOnEnterPressed = function(self)
+        local button = _G[self:GetParent():GetName().."Button1"]
+        if addon:APIIsTrue(button:IsEnabled()) then
+            local base = self:GetParent():GetName()
+            local editbox = _G[base .. "EditBox"]
+            local profileName = editbox:GetText()
+            messageAndSwitchProfile(profileName)
+        end
+        self:GetParent():Hide();
+    end,
+    EditBoxOnTextChanged = function (self)
+        local editBox = _G[self:GetParent():GetName().."EditBox"];
+        local txt = editBox:GetText()
+        if #txt > 0 then
+            _G[self:GetParent():GetName().."Button1"]:Enable();
+        else
+            _G[self:GetParent():GetName().."Button1"]:Disable();
+        end
+    end,
+    EditBoxOnEscapePressed = function(self)
+        self:GetParent():Hide();
+        ClearCursor();
+    end
 }
 
 local function getsorttbl()
@@ -573,7 +573,7 @@ function panel.refresh()
     panel.disableDuringHousing:SetChecked(settings.disableInHousing)
     panel.updown:SetChecked(settings.downclick)
     panel.fastooc:SetChecked(settings.fastooc)
-	panel.stopcastingfix:SetChecked(settings.stopcastingfix)
+    panel.stopcastingfix:SetChecked(settings.stopcastingfix)
 
     end, geterrorhandler())
 end
@@ -589,7 +589,7 @@ function panel.okay()
     -- Update the saved variables
     settings.disableInHousing = not not panel.disableDuringHousing:GetChecked()
     settings.downclick = not not panel.updown:GetChecked()
-	settings.stopcastingfix = not not panel.stopcastingfix:GetChecked()
+    settings.stopcastingfix = not not panel.stopcastingfix:GetChecked()
     settings.fastooc = not not panel.fastooc:GetChecked()
 
     if #panel.talentProfiles > 0 then

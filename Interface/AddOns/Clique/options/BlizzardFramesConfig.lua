@@ -82,7 +82,7 @@ function panel:CreateOptions()
     table.insert(bits, self.PlayerFrame)
     table.insert(bits, self.PetFrame)
     table.insert(bits, self.TargetFrame)
-	table.insert(bits, self.TargetFrameToT)
+    table.insert(bits, self.TargetFrameToT)
 
     -- No focus frames in Classic
     if not addon:ProjectIsClassic() then

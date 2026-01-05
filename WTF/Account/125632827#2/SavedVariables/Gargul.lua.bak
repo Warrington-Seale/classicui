@@ -1,12 +1,20 @@
 
 GargulDB = {
-["BoostedRolls"] = {
-},
 ["TMB"] = {
+},
+["BoostedRolls"] = {
 },
 ["LoadDetails"] = {
 ["7.7.11"] = 1767055461,
-["lastLoadedOn"] = 1767480897,
+["lastLoadedOn"] = 1767551198,
+},
+["LootPriority"] = {
+},
+["GDKP"] = {
+["Queue"] = {
+},
+},
+["AwardHistory"] = {
 },
 ["Settings"] = {
 ["autoOpenCommandHelp"] = true,
@@ -319,19 +327,11 @@ false,
 ["hideInfoOfPeopleNotInGroup"] = true,
 },
 },
-["GDKP"] = {
-["Queue"] = {
-},
-},
-["PlusOnes"] = {
-},
-["LootPriority"] = {
-},
 ["SoftRes"] = {
 },
 ["RecentlyAwardedItems"] = {
 },
-["AwardHistory"] = {
+["PlusOnes"] = {
 },
 ["MinimapButton"] = {
 },

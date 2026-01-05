@@ -9,7 +9,7 @@
 --   * ADDON_LOADED - To watch for loading of the ArenaUI
 -------------------------------------------------------------------------]]--
 
----@class addon
+---@class CliqueAddon
 local addon = select(2, ...)
 local L = addon.L
 
@@ -40,23 +40,51 @@ function addon:FindHealthManaBars(obj)
     return health, mana
 end
 
-local function setStatusBarMouseEnabled(obj, enabled, ...)
-    local current = obj
-    local path = {...}
-    for idx, key in ipairs(path) do
-        if current[key] then
-            current = current[key]
-        else
-            error("Error finding path when searching for status bar: " .. table.concat(path, "."))
+local buffParentKeysExact = {
+    ["Debuff1"] = true,
+    ["Debuff2"] = true,
+    ["Debuff3"] = true,
+    ["centerStatusIcon"] = true,
+    ["CenterDefensiveBuff"] = true,
+}
+
+local buffGlobalNamePatterns = {
+    "^.+Buff%d$",
+    "^.+Debuff%d$",
+    "^.+DispelDebuff1$",
+    "^.+CenterStatusIcon$",
+}
+
+function addon:FindBuffFrames(obj)
+    local checked = {}
+    local found = {}
+
+    local traverse
+    traverse = function(current)
+        if type(current) ~= "table" then return end
+        if checked[current] then return end
+
+        checked[current] = true
+        for key, value in pairs(current) do
+
+            -- Check the parent key names exactly
+            if key and buffParentKeysExact[key] then
+                table.insert(found, value)
+            elseif type(value) == "table" and value.GetName and pcall(value.GetName, value) and type(value:GetName()) == "string" then
+                local name = value:GetName()
+                for _, pattern in ipairs(buffGlobalNamePatterns) do
+                    if name:match(pattern) then
+                        table.insert(found, value)
+                    end
+                end
+            elseif type(value) == "table" then
+                traverse(value)
+            end
         end
     end
 
-    -- Should be at the status bar here
-    if current.SetPropagateMouseMotion then
-        current:SetPropagateMouseMotion(enabled)
-    else
-        error("Error binding EnableMouse on status bar at path: " .. table.concat(path, "."))
-    end
+    traverse(obj)
+    return found
 end
 
 local function registerFrameOutOfcombat(frame)
@@ -101,6 +129,13 @@ local function registerFrameOutOfcombat(frame)
         end
         if mana and mana.SetPropagateMouseMotion then
             mana:SetPropagateMouseMotion(true)
+        end
+    end
+
+    local buffFrames = addon:FindBuffFrames(frame)
+    for _, value in ipairs(buffFrames) do
+        if value.SetPropagateMouseMotion then
+            value:SetPropagateMouseMotion(true)
         end
     end
 

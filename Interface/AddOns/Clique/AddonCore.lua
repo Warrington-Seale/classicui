@@ -15,8 +15,34 @@
 
 local addonName = select(1, ...)
 
+---@alias EventHandler
+---| string
+---| fun(...: any)
+
+---@class AddonCore
+---@field RegisterEvent fun(self: AddonCore, event: string, handler: EventHandler?)
+---@field UnregisterEvent fun(self: AddonCore, event: string, handler: EventHandler?)
+---@field APIIsTrue fun(self:AddonCore, val: any): boolean
+---@field ProjectIsRetail fun(self: AddonCore): boolean
+---@field ProjectIsClassic fun(self: AddonCore): boolean
+---@field ProjectIsBCC fun(self: AddonCore): boolean
+---@field ProjectIsWrath fun(self: AddonCore): boolean
+---@field ProjectIsCataclysm fun(self: AddonCore): boolean
+---@field ProjectIsMists fun(self: AddonCore): boolean
+---@field ProjectIsDragonflight fun(self: AddonCore): boolean
+---@field ProjectIsWarWithin fun(self: AddonCore): boolean
+---@field ProjectIsMidnight fun(self: AddonCore): boolean
+---@field Printf fun(self: AddonCore, msg: string, ...: any)
+---@field version string
+---@field RegisterModule fun(self: AddonCore, module: table, name: string)
+---@field RegisterMessage fun(self: AddonCore, name: string, handler: EventHandler?)
+---@field UnregisterMessage fun(self: AddonCore, name: string)
+---@field FireMessage fun(self: AddonCore, name: string, ...: any)
+---@field Defer fun(self: AddonCore, ...:any)
+---@field L table<string,string>
+---@field RegisterLocale fun(self: AddonCore, locale: string, tbl: table<string,string>)
+
 local addon = select(2, ...)
----@cast addon AddonCore
 
 -- Set global name of addon
 _G[addonName] = addon
@@ -74,13 +100,13 @@ end
 
 -- Returns true if the API value is true-ish (handles old 1/nil returns)
 function addon:APIIsTrue(val)
-	if type(val) == "boolean" then
+    if type(val) == "boolean" then
         return val
-	elseif type(val) == "number" then
-		return val == 1
-	else
-		return false
-	end
+    elseif type(val) == "number" then
+        return val == 1
+    else
+        return false
+    end
 end
 
 local projects = {

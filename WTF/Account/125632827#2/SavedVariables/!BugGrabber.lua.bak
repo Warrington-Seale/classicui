@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
-["session"] = 14,
 ["lastSanitation"] = 3,
+["session"] = 17,
 ["errors"] = {
 {
 ["message"] = "[ADDON_ACTION_BLOCKED] AddOn 'ZygorGuidesViewerClassic' tried to call the protected function 'ZygorGuidesViewerPointer_ArrowCtrl:StartMoving()'.",
@@ -12,12 +12,36 @@ BugGrabberDB = {
 ["counter"] = 1,
 },
 {
+["message"] = "[ADDON_ACTION_BLOCKED] AddOn 'KiwiFarm' tried to call the protected function 'Search()'.",
+["time"] = "2026/01/04 16:47:55",
+["locals"] = "self = <table> {\n}\nevent = \"ADDON_ACTION_BLOCKED\"\naddonName = \"KiwiFarm\"\naddonFunc = \"Search()\"\nname = \"KiwiFarm\"\nbadAddons = <table> {\n KiwiFarm = true\n}\nL = <table> {\n ADDON_CALL_PROTECTED_MATCH = \"^%[(.*)%] (AddOn '.*' tried to call the protected function '.*'.)$\"\n NO_DISPLAY_2 = \"|cffffff00The standard display is called BugSack, and can probably be found on the same site where you found !BugGrabber.|r\"\n ERROR_DETECTED = \"%s |cffffff00captured, click the link for more information.|r\"\n USAGE = \"|cffffff00Usage: /buggrabber <1-%d>.|r\"\n BUGGRABBER_STOPPED = \"|cffffff00There are too many errors in your UI. As a result, your game experience may be degraded. Disable or update the failing addons if you don't want to see this message again.|r\"\n STOP_NAG = \"|cffffff00!BugGrabber will not nag about missing a display addon again until next patch.|r\"\n ADDON_DISABLED = \"|cffffff00!BugGrabber and %s cannot coexist; %s has been forcefully disabled. If you want to, you may log out, disable !BugGrabber, and enable %s.|r\"\n NO_DISPLAY_STOP = \"|cffffff00If you don't want to be reminded about this again, run /stopnag.|r\"\n NO_DISPLAY_1 = \"|cffffff00You seem to be running !BugGrabber with no display addon to go along with it. Although a slash command is provided for accessing error reports, a display can help you manage these errors in a more convenient way.|r\"\n ERROR_UNABLE = \"|cffffff00!BugGrabber is unable to retrieve errors from other players by itself. Please install BugSack or a similar display addon that might give you this functionality.|r\"\n ADDON_CALL_PROTECTED = \"[%s] AddOn '%s' tried to call the protected function '%s'.\"\n}\n",
+["stack"] = "[Interface/AddOns/!BugGrabber/BugGrabber.lua]:583: in function '?'\n[Interface/AddOns/!BugGrabber/BugGrabber.lua]:507: in function <Interface/AddOns/!BugGrabber/BugGrabber.lua:507>\n[C]: in function 'Search'\n[Interface/AddOns/Blizzard_GroupFinder_VanillaStyle/Blizzard_LFGVanilla_Browse.lua]:250: in function 'LFGBrowse_DoSearch'\n[Interface/AddOns/Blizzard_GroupFinder_VanillaStyle/Blizzard_LFGVanilla_Browse.lua]:189: in function 'SearchActiveEntry'\n[Interface/AddOns/Blizzard_GroupFinder_VanillaStyle/Blizzard_LFGVanilla_ParentFrame.lua]:95: in function 'LFGParentFrame_SearchActiveEntry'\n[Interface/AddOns/Blizzard_GroupFinder_VanillaStyle/Blizzard_LFGVanilla_Listing.lua]:77: in function <...pFinder_VanillaStyle/Blizzard_LFGVanilla_Listing.lua:54>",
+["session"] = 16,
+["counter"] = 1,
+},
+{
+["message"] = "[ADDON_ACTION_BLOCKED] AddOn 'ZygorGuidesViewerClassic' tried to call the protected function 'EquipCursorItem()'.",
+["time"] = "2026/01/04 17:25:30",
+["locals"] = "self = <table> {\n}\nevent = \"ADDON_ACTION_BLOCKED\"\naddonName = \"ZygorGuidesViewerClassic\"\naddonFunc = \"EquipCursorItem()\"\nname = \"ZygorGuidesViewerClassic\"\nbadAddons = <table> {\n ZygorGuidesViewerClassic = true\n KiwiFarm = true\n}\nL = <table> {\n ADDON_CALL_PROTECTED_MATCH = \"^%[(.*)%] (AddOn '.*' tried to call the protected function '.*'.)$\"\n NO_DISPLAY_2 = \"|cffffff00The standard display is called BugSack, and can probably be found on the same site where you found !BugGrabber.|r\"\n ERROR_DETECTED = \"%s |cffffff00captured, click the link for more information.|r\"\n USAGE = \"|cffffff00Usage: /buggrabber <1-%d>.|r\"\n BUGGRABBER_STOPPED = \"|cffffff00There are too many errors in your UI. As a result, your game experience may be degraded. Disable or update the failing addons if you don't want to see this message again.|r\"\n STOP_NAG = \"|cffffff00!BugGrabber will not nag about missing a display addon again until next patch.|r\"\n ADDON_DISABLED = \"|cffffff00!BugGrabber and %s cannot coexist; %s has been forcefully disabled. If you want to, you may log out, disable !BugGrabber, and enable %s.|r\"\n NO_DISPLAY_STOP = \"|cffffff00If you don't want to be reminded about this again, run /stopnag.|r\"\n NO_DISPLAY_1 = \"|cffffff00You seem to be running !BugGrabber with no display addon to go along with it. Although a slash command is provided for accessing error reports, a display can help you manage these errors in a more convenient way.|r\"\n ERROR_UNABLE = \"|cffffff00!BugGrabber is unable to retrieve errors from other players by itself. Please install BugSack or a similar display addon that might give you this functionality.|r\"\n ADDON_CALL_PROTECTED = \"[%s] AddOn '%s' tried to call the protected function '%s'.\"\n}\n",
+["stack"] = "[Interface/AddOns/!BugGrabber/BugGrabber.lua]:583: in function '?'\n[Interface/AddOns/!BugGrabber/BugGrabber.lua]:507: in function <Interface/AddOns/!BugGrabber/BugGrabber.lua:507>\n[C]: in function 'EquipCursorItem'\n[Interface/AddOns/ZygorGuidesViewerClassic/Item-Upgrades.lua]:749: in function 'EquipFromBags'\n[Interface/AddOns/ZygorGuidesViewerClassic/Item-Upgrades.lua]:703: in function 'ScoreBagsItems'\n[Interface/AddOns/ZygorGuidesViewerClassic/Item-Upgrades.lua]:592: in function 'ScanBagsForUpgrades'\n[Interface/AddOns/ZygorGuidesViewerClassic/Item-Upgrades.lua]:161: in function 'ScoreEquippedItems'\n[Interface/AddOns/ZygorGuidesViewerClassic/Item-ItemScore.lua]:123: in function 'func'\n[Interface/AddOns/Alts/Libs/AceTimer-3.0-17/AceTimer-3.0.lua]:57: in function <...rface/AddOns/Alts/Libs/AceTimer-3.0/AceTimer-3.0.lua:50>",
+["session"] = 16,
+["counter"] = 1,
+},
+{
+["message"] = "...erface/AddOns/Details/Libs/PlayerInfo/PlayerInfo.lua:566: Usage: SendCommMessage(addon, \"prefix\", \"text\", \"distribution\"[, \"target\"[, \"prio\"[, callbackFn, callbackarg]]])",
+["time"] = "2026/01/04 18:40:34",
+["locals"] = "self = <table> {\n}\nprefix = \"PITB\"\ntext = \"c1MGAA==\"\ndistribution = nil\ntarget = nil\nprio = \"NORMAL\"\ncallbackFn = nil\ncallbackArg = nil\nCTL = <table> {\n securelyHookedLogged = true\n avail = 3643\n MAX_CPS = 800\n LastAvailUpdate = 10542.248000\n OnUpdateDelay = 0\n Prio = <table> {\n }\n version = 31\n Frame = Frame {\n }\n HardThrottlingBeginTime = 9414.339000\n BURST = 4000\n MIN_FPS = 20\n bQueueing = false\n nBypass = 25043\n bChoking = false\n securelyHookedBNGameData = true\n MSG_OVERHEAD = 40\n BlockedQueuesDelay = 0.166000\n securelyHooked = true\n nTotalSent = 0\n}\nMSG_MULTI_FIRST = \"\"\nMSG_MULTI_NEXT = \"\"\nMSG_MULTI_LAST = \"\"\n",
+["stack"] = "[Interface/AddOns/BugSack/Libs/AceComm-3.0-14/AceComm-3.0.lua]:91: in function 'SendCommMessage'\n[Interface/AddOns/Details/Libs/PlayerInfo/PlayerInfo.lua]:566: in function 'SendData'\n[Interface/AddOns/Details/Libs/PlayerInfo/PlayerInfo.lua]:395: in function 'SetSendingFullUpdate'\n[Interface/AddOns/Details/Libs/PlayerInfo/PlayerInfo.lua]:1333: in function <...erface/AddOns/Details/Libs/PlayerInfo/PlayerInfo.lua:1326>\n[Interface/AddOns/Details/Libs/PlayerInfo/PlayerInfo.lua]:1343: in function <...erface/AddOns/Details/Libs/PlayerInfo/PlayerInfo.lua:1342>",
+["session"] = 16,
+["counter"] = 1,
+},
+{
 ["message"] = "Interface/AddOns/LoseControl/LoseControl.lua:6384: CreateFrame(): Couldn't find inherited node \"OptionsCheckButtonTemplate\"",
 ["time"] = "2025/12/30 14:03:48",
 ["locals"] = "",
 ["stack"] = "",
-["session"] = 14,
-["counter"] = 14,
+["session"] = 17,
+["counter"] = 17,
 },
 },
 }

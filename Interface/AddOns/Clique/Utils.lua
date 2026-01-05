@@ -9,7 +9,11 @@
 --   None
 -------------------------------------------------------------------------]]--
 
-local addonName, addon = ...
+local addonName = select(1, ...)
+
+--- @class CliqueAddon
+local addon = select(2, ...)
+
 local L = addon.L
 
 local strconcat = strconcat
@@ -423,11 +427,11 @@ compareFunctions = {
     end,
     binding = function(a, b)
         local mem = memoizeBindings
-		if mem[a] == mem[b] then
-			return compareFunctions.name(a, b)
-		else
-			return mem[a] < mem[b]
-		end
+        if mem[a] == mem[b] then
+            return compareFunctions.name(a, b)
+        else
+            return mem[a] < mem[b]
+        end
     end,
 }
 

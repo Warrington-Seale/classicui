@@ -69,13 +69,13 @@ function addon:Classic_BlizzPartyFrames()
 
     local frames = {
         "PartyMemberFrame1",
-		"PartyMemberFrame2",
-		"PartyMemberFrame3",
-		"PartyMemberFrame4",
+        "PartyMemberFrame2",
+        "PartyMemberFrame3",
+        "PartyMemberFrame4",
         --"PartyMemberFrame5",
-		"PartyMemberFrame1PetFrame",
-		"PartyMemberFrame2PetFrame",
-		"PartyMemberFrame3PetFrame",
+        "PartyMemberFrame1PetFrame",
+        "PartyMemberFrame2PetFrame",
+        "PartyMemberFrame3PetFrame",
         "PartyMemberFrame4PetFrame",
         --"PartyMemberFrame5PetFrame",
     }

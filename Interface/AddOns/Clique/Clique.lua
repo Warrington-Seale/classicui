@@ -58,8 +58,8 @@ function addon:Initialize()
     self.header = CreateFrame("Frame", addonName .. "HeaderFrame", UIParent, "SecureHandlerBaseTemplate,SecureHandlerAttributeTemplate")
     ClickCastHeader = addon.header
 
-	-- This snippet will clear any dangling bindings that might have occurred
-	-- as a result of frames being shown/hidden.
+    -- This snippet will clear any dangling bindings that might have occurred
+    -- as a result of frames being shown/hidden.
     local oacScript = [[
         if name == "hasunit" and value == "false" and danglingButton then
             -- Check if we should clear the bindings
@@ -76,11 +76,11 @@ function addon:Initialize()
     self.header:SetAttribute("_onattributechanged", oacScript)
     RegisterAttributeDriver(self.header, "hasunit", "[@mouseover, exists] true; false")
 
-	-- Create a secure action button that's sole purpose is to cancel a
-	-- pending spellcast (the targeting hand)
-	self.stopbutton = CreateFrame("Button", addonName .. "StopButton", nil, "SecureActionButtonTemplate")
-	self.stopbutton.name = self.stopbutton:GetName()
-	self.stopbutton:SetAttribute("type", "stop")
+    -- Create a secure action button that's sole purpose is to cancel a
+    -- pending spellcast (the targeting hand)
+    self.stopbutton = CreateFrame("Button", addonName .. "StopButton", nil, "SecureActionButtonTemplate")
+    self.stopbutton.name = self.stopbutton:GetName()
+    self.stopbutton:SetAttribute("type", "stop")
 
     -- Create a secure action button that can be used for 'hovercast' and 'global'
     self.globutton = CreateFrame("Button", addonName .. "SABButton", UIParent, "SecureActionButtonTemplate, SecureHandlerBaseTemplate")
@@ -397,8 +397,8 @@ local function ApplicationOrder(a, b)
     -- Force out-of-combat clicks to take the HIGHEST priority
     if a.sets.ooc and not b.sets.ooc then
         return true
-	elseif b.sets.ooc and not a.sets.ooc then
-		return false
+    elseif b.sets.ooc and not a.sets.ooc then
+        return false
     elseif a.sets.ooc and b.sets.ooc then
         return acnt < bcnt
     end
@@ -708,40 +708,40 @@ function addon:GetBindingAttributes(global)
     local unique = {}
 
     for idx, entry in ipairs(self.bindings) do
-		if entry.key then
-			if shouldApply(global, entry) and self:EntryIsCorrectSpec(entry) then
-				if global then
-					-- Allow for the re-binding of clicks and keys, except for
-					-- unmodified left/right-click
-					if entry.key ~= "BUTTON1" and entry.key ~= "BUTTON2" then
-						local prefix, suffix = addon:GetBindingPrefixSuffix(entry, global)
-						local key = self:ConvertSpecialKeys(entry)
+        if entry.key then
+            if shouldApply(global, entry) and self:EntryIsCorrectSpec(entry) then
+                if global then
+                    -- Allow for the re-binding of clicks and keys, except for
+                    -- unmodified left/right-click
+                    if entry.key ~= "BUTTON1" and entry.key ~= "BUTTON2" then
+                        local prefix, suffix = addon:GetBindingPrefixSuffix(entry, global)
+                        local key = self:ConvertSpecialKeys(entry)
 
-						local attr = B_SET:format(key, suffix)
-						if not unique[attr] then
-							set[#set + 1] = attr
-							clr[#clr + 1] = B_CLR:format(key)
-							unique[attr] = true
-						end
-					end
-				else
-					local buttonNum = entry.key:match("BUTTON(%d+)$")
-					if not buttonNum then
-						-- Only apply key-based binding clicks, let the raw
-						-- attributes handle the others
-						local prefix, suffix = addon:GetBindingPrefixSuffix(entry, global)
-						local key = self:ConvertSpecialKeys(entry)
+                        local attr = B_SET:format(key, suffix)
+                        if not unique[attr] then
+                            set[#set + 1] = attr
+                            clr[#clr + 1] = B_CLR:format(key)
+                            unique[attr] = true
+                        end
+                    end
+                else
+                    local buttonNum = entry.key:match("BUTTON(%d+)$")
+                    if not buttonNum then
+                        -- Only apply key-based binding clicks, let the raw
+                        -- attributes handle the others
+                        local prefix, suffix = addon:GetBindingPrefixSuffix(entry, global)
+                        local key = self:ConvertSpecialKeys(entry)
 
-						local attr = B_SET:format(key, suffix)
-						if not unique[attr] then
-							set[#set + 1] = attr
-							clr[#clr + 1] = B_CLR:format(key)
-							unique[attr] = true
-						end
-					end
-				end
-			end
-		end
+                        local attr = B_SET:format(key, suffix)
+                        if not unique[attr] then
+                            set[#set + 1] = attr
+                            clr[#clr + 1] = B_CLR:format(key)
+                            unique[attr] = true
+                        end
+                    end
+                end
+            end
+        end
     end
 
     return table.concat(set, "\n"), table.concat(clr, "\n")
@@ -948,7 +948,7 @@ function addon:TalentGroupChanged()
     local newProfile
 
     local currentSpec = self:GetActiveTalentSpec()
-	if self.settings.specswap and currentSpec then
+    if self.settings.specswap and currentSpec then
         local settingsKey = string.format("spec%d_profileKey", currentSpec)
         if self.settings[settingsKey] then
             newProfile = self.settings[settingsKey]
@@ -1079,6 +1079,10 @@ function addon:CheckPartyCombat(event, unit)
 end
 
 function addon:HouseEditorModeChanged(event, editMode)
+    if InCombatLockdown() then
+        self:Defer("HouseEditorModeChanged")
+    end
+
     if not C_HouseEditor then
         return
     end
