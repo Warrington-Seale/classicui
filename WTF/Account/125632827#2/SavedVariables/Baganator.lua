@@ -153,8 +153,7 @@ BAGANATOR_CONFIG = {
 },
 ["junk_plugin_ignored"] = {
 },
-["currencies_tracked"] = {
-},
+["icon_text_quality_colors"] = true,
 ["saved_searches"] = {
 },
 ["lock_frames"] = false,
@@ -170,7 +169,8 @@ BAGANATOR_CONFIG = {
 ["add_to_category_buttons_2"] = "drag",
 ["view_type"] = "unset",
 ["bank_current_tab"] = 1,
-["icon_text_quality_colors"] = true,
+["currencies_tracked"] = {
+},
 ["character_bank_view_width"] = 14,
 ["icon_text_font_size"] = 14,
 ["bag_view_type"] = "category",
@@ -188,7 +188,22 @@ BAGANATOR_CONFIG = {
 0,
 0,
 },
-["debug_keywords"] = false,
+["skins"] = {
+["elvui"] = {
+["use_bag_font"] = false,
+},
+["blizzard"] = {
+["no_frame_borders"] = false,
+["view_transparency"] = 0,
+["empty_slot_background"] = false,
+},
+["dark"] = {
+["no_frame_borders"] = false,
+["square_icons"] = false,
+["view_transparency"] = 0.3,
+["empty_slot_background"] = false,
+},
+},
 ["new_items_flashing"] = true,
 ["auto_sort_on_open"] = false,
 ["category_migration"] = 5,
@@ -207,22 +222,7 @@ BAGANATOR_CONFIG = {
 0,
 80.83332061767578,
 },
-["skins"] = {
-["elvui"] = {
-["use_bag_font"] = false,
-},
-["blizzard"] = {
-["no_frame_borders"] = false,
-["view_transparency"] = 0,
-["empty_slot_background"] = false,
-},
-["dark"] = {
-["no_frame_borders"] = false,
-["square_icons"] = false,
-["view_transparency"] = 0.3,
-["empty_slot_background"] = false,
-},
-},
+["debug_keywords"] = false,
 ["upgrade_plugin_ignored"] = {
 },
 ["show_sort_button_2"] = true,

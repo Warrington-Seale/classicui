@@ -13,10 +13,10 @@ X: 0
 Y: 0
 W: 1024
 H: 712
-Frame: Gargul.BidderQueue.Window
-FrameLevel: 100
-Anchor: CENTER
+Frame: RARESCANNER_BUTTON
+FrameLevel: 200
+Anchor: BOTTOM
 X: 0
-Y: 0
-W: 150
-H: 170
+Y: 128
+W: 200
+H: 50

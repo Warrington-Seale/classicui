@@ -2,10 +2,6 @@
 ElvCharacterDB = {
 ["ConvertKeybindings"] = true,
 ["ChatEditHistory"] = {
-"/s r?",
-"/ec",
-"/s gzg",
-"/s ,3",
 "/s <3",
 "/p thanks for run!",
 "/p ggs :)",
@@ -22,6 +18,10 @@ ElvCharacterDB = {
 "/zygor",
 "/g <3",
 "/g LETSGOOOO",
+"/g O H A I",
+"/g how doin friens",
+"/g aw <3",
+"/s ohai mrm priest pries",
 },
 ["ChatHistoryLog"] = {
 },

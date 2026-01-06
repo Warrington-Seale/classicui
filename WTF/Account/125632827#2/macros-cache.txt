@@ -17,12 +17,12 @@ VER 3 0000000000000004 "RXPTargeting" "Ability_eyeoftheowl"
 /targetexact Snagglespear
 /targetlasttarget [dead]
 END
-VER 3 0000000000000008 "sda" "134400"
-/3 LFM ONYXIA - 1SR>MS>OS, head and skin hr (27/30) Need dps
-END
 VER 3 0000000000000007 "sda" "135966"
 /tar digmaster
 /targetexact Digmaster Shovelphlange
+END
+VER 3 0000000000000008 "sda" "134400"
+/3 LFM ONYXIA - 1SR>MS>OS, head and skin hr (27/30) Need dps
 END
 VER 3 0000000000000006 "spam" "134400"
 /run C_GossipInfo.SelectAvailableQuest( C_GossipInfo.GetAvailableQuests()[3]["questID"])

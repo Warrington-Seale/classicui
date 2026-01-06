@@ -140,7 +140,7 @@ PlumberDB = {
 },
 ["seenNewFeatureMark"] = {
 },
-["nextDailyReset"] = 1767585599,
+["nextDailyReset"] = 1767671999,
 ["LootUI_BackgroundAlpha"] = 0.5,
 }
 PlumberDevData = nil

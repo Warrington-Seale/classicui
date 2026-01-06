@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
 ["lastSanitation"] = 3,
-["session"] = 17,
+["session"] = 23,
 ["errors"] = {
 {
 ["message"] = "[ADDON_ACTION_BLOCKED] AddOn 'ZygorGuidesViewerClassic' tried to call the protected function 'ZygorGuidesViewerPointer_ArrowCtrl:StartMoving()'.",
@@ -40,8 +40,8 @@ BugGrabberDB = {
 ["time"] = "2025/12/30 14:03:48",
 ["locals"] = "",
 ["stack"] = "",
-["session"] = 17,
-["counter"] = 17,
+["session"] = 23,
+["counter"] = 23,
 },
 },
 }

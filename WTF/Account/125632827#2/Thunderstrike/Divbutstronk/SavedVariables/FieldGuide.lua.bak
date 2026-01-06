@@ -1,0 +1,10 @@
+
+FieldGuideOptions = {
+["showTalents"] = true,
+["unwantedSpells"] = {
+},
+["pins"] = {
+},
+["minimapTable"] = {
+},
+}
